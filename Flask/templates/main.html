@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<style>
+form{
+    margin:auto;
+    width:35%;
+}
+
+.return {
+    margin: auto;
+    width:35%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <title>Прогнозирование соотношения матрица-наполнитель</title>
+</head>
+<h2 align="center">Прогнозирование соотношения матрица-наполнитель</h1>
+<h1></h1>
+<form action="{{url_for('main')}}" method="POST">
+    <fieldset>
+        <legend>Введите значения</legend>
+        <table>
+            <tr><td>Плотность, кг/м3</td><td>
+                <input name = "p2" type="_number" required value="1890.413468"></td>
+            </tr>
+            <tr><td>модуль упругости, ГПа</td><td>
+                <input name = "p3" type="_number" required value="417.316232"></td>
+            </tr>
+            <tr><td>Количество отвердителя, м.%</td><td>
+                <input name = "p4" type="_number" required value="129.183416"></td>
+            </tr>
+            <tr><td>Содержание эпоксидных групп,%_2</td><td>
+                <input name = "p5" type="_number" required value="27.474763"></td>
+            </tr>
+            <tr><td>Температура вспышки, С_2</td><td>
+                <input name = "p6" type="_number" required value="300.952708"></td>
+            </tr>
+            <tr><td>Поверхностная плотность, г/м2</td><td>
+                <input name = "p7" type="_number" required value="758.747882"></td>
+            </tr>
+            <tr><td>Потребление смолы, г/м2</td><td>
+                <input name = "p10" type="_number" required value="194.754342"></td>
+            </tr>
+            <tr><td>Угол нашивки, град</td><td>
+                <input name = "p11" type="_number" required value="90"></td>
+            </tr>
+            <tr><td>Шаг нашивки</td><td>
+                <input name = "p12" type="_number" required value="6.078902"></td>
+            </tr>
+            <tr><td>Плотность нашивки</td><td>
+                <input name = "p13" type="_number" required value="77.434468"></td>
+            </tr>
+            </table>
+        <input type="submit">
+    </fieldset>
+</form>
+
+<div class="result" align="center">
+    {% if result %}
+         <br>
+         <p style="font-size: 50px">
+         Прогноз соотношения матрица-наполнитель:
+         </p>
+         <p style="font-size: 50px">{{result}}</p>
+    {% endif %}
+</div>
