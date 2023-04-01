@@ -44,7 +44,7 @@ def main():
         # стандартизируем все 13:
         prm_std= std_scaler_l.transform([prm_df])
         # удаляем 1, 8, 9
-        prm_std = np.delete(prm_df, [0, 7, 8])
+        prm_std = np.delete(prm_std, [0, 7, 8])
         df = pd.DataFrame(data = [prm_std])
         # предсказание по модели
         y3_pred = loaded_model.predict(df)
