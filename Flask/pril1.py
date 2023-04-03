@@ -28,6 +28,7 @@ def main():
         std_scaler_l=load('scaler_df.joblin')  # загружаем масштабатор
         with open('model_best.pkl', 'rb') as f:
             loaded_model = pickle.load(f) # загружаем модель
+            
         # получаем входные данные
         p2 = float(flask.request.form['p2'])
         p3 = float(flask.request.form['p3'])
@@ -39,6 +40,7 @@ def main():
         p11 = float(flask.request.form['p11'])
         p12 = float(flask.request.form['p12'])
         p13 = float(flask.request.form['p13'])
+        
         # 1, 8, 9 параметры укажем 0
         prm_df = np.array([0,p2,p3,p4,p5,p6,p7,0,0,p10,p11,p12,p13])
         # стандартизируем все 13:
@@ -48,8 +50,11 @@ def main():
         df = pd.DataFrame(data = [prm_std])
         # предсказание по модели
         y3_pred = loaded_model.predict(df)
+        # отменяем масштабирование
+        prm_pred = np.array([y3_pred[0][0],0,0,0,0,0,0,0,0,0,0,0,0])
+        prm_pred_invers = std_scaler_l.inverse_transform([prm_pred])
 
-        return render_template('main.html', result = y3_pred)
-    
+        return render_template('main.html', result = prm_pred_invers[0][0])
+
 if __name__=='__main__':
     app.run()
